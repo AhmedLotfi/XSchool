@@ -5,16 +5,24 @@ import { AppComponent } from './app.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { UsersComponent } from './pages/users/users.component';
 import { NavBarComponent } from './pages/core/nav-bar/nav-bar.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './pages/accounts/login/login.component';
+import { RegisterComponent } from './pages/accounts/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountsComponent,
     UsersComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
