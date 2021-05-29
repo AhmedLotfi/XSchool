@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './pages/accounts/login/login.component';
 import { RegisterComponent } from './pages/accounts/register/register.component';
 import {HttpClientModule} from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,12 @@ import {HttpClientModule} from '@angular/common/http'
     NavBarComponent,
     LoginComponent,
     RegisterComponent,
-    HttpClientModule
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule , HttpClientModule , FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
