@@ -9,10 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './pages/accounts/login/login.component';
 import { RegisterComponent } from './pages/accounts/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { GlobalAppInterceptor } from './interceptors/global-app.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
       preventDuplicates: true,
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalAppInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
