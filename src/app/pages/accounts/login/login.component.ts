@@ -5,6 +5,9 @@ import { AccountsService } from 'src/app/services/accounts.service';
 import { ToastrService } from 'ngx-toastr';
 import { APIResponse } from 'src/app/model/core/apiResponse';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { JWTTokenService } from 'src/app/services/jwttoken.service';
+import { AppSettings } from 'src/app/helpers/appSettings';
 
 @Component({
   selector: 'app-login',
@@ -18,16 +21,19 @@ export class LoginComponent implements OnInit, ILogin {
   constructor(
     private accountsService: AccountsService,
     private toastr: ToastrService,
-    private router:Router
-  ) {}
+    private localStorageService: LocalStorageService,
+    private jwtTokenService: JWTTokenService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login() {
     const loginModel = new LoginModel(this.email, this.password);
 
     this.accountsService.login(loginModel).subscribe((response) => {
       this.toastr.error(response.message);
+      this.localStorageService.set(AppSettings.KEY_USER_TOKEN, response.data.access_token);
       this.router.navigateByUrl('/home');
     });
   }

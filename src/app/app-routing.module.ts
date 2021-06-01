@@ -6,10 +6,11 @@ import { UsersComponent } from './pages/users/users.component';
 import { LoginComponent } from './pages/accounts/login/login.component';
 import { RegisterComponent } from './pages/accounts/register/register.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { AuthorizeGuard } from './guards/authorize.guard';
 
 const appRoutes: Routes = [
   { path: 'home', component: AppComponent },
-  { path: 'users', component: UsersComponent },
+  { path: 'users', component: UsersComponent, canActivate: [AuthorizeGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: PagenotfoundComponent },
@@ -20,4 +21,4 @@ const appRoutes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

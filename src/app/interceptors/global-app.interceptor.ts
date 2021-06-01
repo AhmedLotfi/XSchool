@@ -15,7 +15,7 @@ export class GlobalAppInterceptor implements HttpInterceptor {
 
   constructor(private localStorageService: LocalStorageService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
    
     const token = this.localStorageService.get(AppSettings.KEY_USER_TOKEN);
     request = request.clone({
