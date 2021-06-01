@@ -32,9 +32,15 @@ export class LoginComponent implements OnInit, ILogin {
     const loginModel = new LoginModel(this.email, this.password);
 
     this.accountsService.login(loginModel).subscribe((response) => {
-      this.toastr.error(response.message);
-      this.localStorageService.set(AppSettings.KEY_USER_TOKEN, response.data.access_token);
-      this.router.navigateByUrl('/home');
+
+      if (response.success) {
+        this.localStorageService.set(AppSettings.KEY_USER_TOKEN, response.data.access_token);
+        this.localStorageService.set(AppSettings.KEY_USER_ROLE, response.data.user_role);
+        this.router.navigateByUrl('/home');
+      } else {
+        this.toastr.error(response.message);
+      }
+
     });
   }
 }

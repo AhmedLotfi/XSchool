@@ -17,7 +17,7 @@
                           <td>{{user.email}}</td>
                             <td *ngIf="user.isAccepted; else elseBlock">User Accepted to the system</td>
                             <ng-template #elseBlock>
-                              <button *ngIf="user.role == 2" class="btn btn-outline-info">Accept User</button>
+                              <button (click)="this.acceptUser(user.id)" *ngIf="this.userRole == 2" class="btn btn-outline-info">Accept User</button>
                             </ng-template>
                         </tr>
                   </tbody>

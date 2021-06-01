@@ -12,6 +12,19 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
+  acceptUser(userId: number): Observable<APIResponse> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http
+      .get<APIResponse>(`${AppSettings.API_EndPoint}/users/acceptUser?userId=${userId}`, httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+
+  }
 
   getAllUsers(): Observable<APIResponse> {
 
