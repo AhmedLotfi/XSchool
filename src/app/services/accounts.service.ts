@@ -9,12 +9,13 @@ import { AppSettings } from '../helpers/appSettings';
 import { APIResponse } from '../model/core/apiResponse';
 import { LoginModel } from '../model/login/loginModel';
 import { catchError, retry } from 'rxjs/operators';
+import { RegisterModel } from '../model/register/registerModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(loginModel: LoginModel): Observable<APIResponse> {
     const httpOptions = {
@@ -24,9 +25,24 @@ export class AccountsService {
     };
 
     return this.http
-      .post<APIResponse>(
-        `${AppSettings.API_EndPoint}/Accounts/Login`,
+      .post<APIResponse>(`${AppSettings.API_EndPoint}/Accounts/Login`,
         loginModel,
+        httpOptions
+      )
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+
+  register(registerModel: RegisterModel): Observable<APIResponse> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http
+      .post<APIResponse>(`${AppSettings.API_EndPoint}/Accounts/Register`,
+        registerModel,
         httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));
