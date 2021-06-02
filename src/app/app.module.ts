@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { GlobalAppInterceptor } from './interceptors/global-app.interceptor';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GlobalAppInterceptor } from './interceptors/global-app.interceptor';
     LoginComponent,
     RegisterComponent,
     PagenotfoundComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

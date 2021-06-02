@@ -7,7 +7,8 @@
     <a class="p-2 text-dark" routerLink="/users" routerLinkActive="active">Users</a>
   </nav>
   <div class="d-flex align-items-center">
-    <a class="btn btn-outline-secondary mr-2" routerLink="/login" routerLinkActive="active">Login</a>
-    <a class="btn btn-outline-secondary mr-3" routerLink="/register" routerLinkActive="active">Sign up</a>
+    <a *ngIf="!isUserLoggedIn" class="btn btn-outline-secondary mr-2" routerLink="/login" routerLinkActive="active">Login</a>
+    <a *ngIf="!isUserLoggedIn" class="btn btn-outline-secondary mr-3" routerLink="/register" routerLinkActive="active">Sign up</a>
+    <a *ngIf="isUserLoggedIn" class="btn btn-outline-secondary mr-3" routerLinkActive="active" (click)="logout()">Logout</a>
   </div>
 </div>
